@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import './screens/menu_screen.dart';
-import './screens/info_screen.dart';
+import './screens/cart_screen.dart';
 import './screens/settings_screen.dart';
+import './services/cart.dart';
 
 void main() {
   runApp(const IlMondoMobileApplication());
@@ -12,14 +13,18 @@ class IlMondoMobileApplication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeScreen(),
+    Cart cart = Cart(); // Create a shared cart instance
+
+    return MaterialApp(
+      home: HomeScreen(cart: cart),
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final Cart cart;
+
+  const HomeScreen({super.key, required this.cart});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -28,19 +33,29 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [const MenuScreen(), const InfoScreen(), const SettingsScreen()];
+
+  late List<Widget> _pages; // Change this to be set dynamically in initState
+
+  @override
+  void initState() {
+    super.initState();
+
+    _pages = [
+      MenuScreen(cart: widget.cart),
+      CartScreen(cart: widget.cart),
+      const SettingsScreen()
+    ];
+  }
 
   void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+    setState(() => _currentIndex = index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Il Mondo'),
+        title: const Text('Menu'),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -48,8 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _onTabTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'),
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Info'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
         ],
       ),
     );
