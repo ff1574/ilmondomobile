@@ -38,7 +38,7 @@ class _FoodItemModalState extends State<FoodItemModal> {
                   const BoxConstraints(maxWidth: 300), // Explicit width
               child: Image.network(
                 widget.image,
-                height: 120,
+                height: 250,
                 fit: BoxFit.cover,
               ),
             ),

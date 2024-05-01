@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../services/cart.dart'; // Ensure this import is present for Cart and CartItem
+import '../services/cart.dart';
+import '../widgets/cart_item_tile.dart';
+import './checkout_screen.dart';
 
 class CartScreen extends StatefulWidget {
   final Cart cart;
@@ -21,12 +23,17 @@ class _CartScreenState extends State<CartScreen> {
           Expanded(
             child: ListView.builder(
               itemCount: widget.cart.items.length,
-              itemBuilder: (context, index) => ListTile(
-                title: Text(widget.cart.items[index].name),
-                subtitle: Text(
-                    "Quantity: ${widget.cart.items[index].quantity} - ${widget.cart.items[index].price.toStringAsFixed(2)}€ each"),
-                trailing: Text(
-                    "Total: ${(widget.cart.items[index].quantity * widget.cart.items[index].price).toStringAsFixed(2)}€"),
+              itemBuilder: (context, index) => CartItemTile(
+                item: widget.cart.items[index],
+                onIncrease: () =>
+                    setState(() => widget.cart.items[index].quantity += 1),
+                onDecrease: () => setState(() {
+                  if (widget.cart.items[index].quantity > 1) {
+                    widget.cart.items[index].quantity -= 1;
+                  }
+                }),
+                onRemove: () => setState(
+                    () => widget.cart.removeItem(widget.cart.items[index])),
               ),
             ),
           ),
@@ -46,8 +53,12 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
           ElevatedButton(
-            // ignore: avoid_print
-            onPressed: () => print("Proceed to Checkout"),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CheckoutScreen(
+                      cart: widget.cart)), // Navigate to checkout
+            ),
             child: const Text("Checkout"),
           ),
         ],

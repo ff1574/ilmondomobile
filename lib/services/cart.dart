@@ -33,6 +33,10 @@ class Cart {
         0.0, (total, item) => total + (item.price * item.quantity));
   }
 
+  void removeItem(CartItem item) {
+    items.removeWhere((i) => i.name == item.name);
+  }
+
   void clear() {
     items.clear();
   }

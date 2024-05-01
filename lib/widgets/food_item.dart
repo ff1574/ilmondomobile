@@ -24,38 +24,40 @@ class FoodItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         elevation: 4.0,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min, // Use min size that fits the child
-            children: [
-              Image.network(
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Use min size that fits the child
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(12.0),
+                topRight: Radius.circular(12.0),
+              ),
+              child: Image.network(
                 image,
-                height: 120, // Fixed height for images
-                width: double.infinity, // Image takes the width of the card
+                height: 120,
+                width: double.infinity,
                 fit: BoxFit.cover,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2, // Allow text to take up to two lines
-                  overflow:
-                      TextOverflow.ellipsis, // Ellipsis to prevent overflow
-                ),
-              ),
-              Text(
-                "${price.toStringAsFixed(2)}€",
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                name,
                 style: const TextStyle(
-                    fontSize: 16.0, fontWeight: FontWeight.bold),
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2, // Allow text to take up to two lines
+                overflow: TextOverflow.ellipsis, // Ellipsis to prevent overflow
               ),
-            ],
-          ),
+            ),
+            Text(
+              "${price.toStringAsFixed(2)}€",
+              style:
+                  const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
     );
