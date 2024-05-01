@@ -10,20 +10,20 @@ class MenuScreen extends StatelessWidget {
 
   MenuScreen({super.key, required this.cart})
       : jsonData = List<Map<String, dynamic>>.from(jsonDecode('''[
-    {"name":"Pepperoni","price":"€8.99","image":"http://dummyimage.com/300x300.png/5fa2dd/ffffff"},
-    {"name":"Spinach and Feta","price":"€10.49","image":"http://dummyimage.com/300x300.png/ff4444/ffffff"},
-    {"name":"Pepperoni","price":"€7.50","image":"http://dummyimage.com/300x300.png/dddddd/000000"},
-    {"name":"Margherita","price":"€6.00","image":"http://dummyimage.com/300x300.png/cc0000/ffffff"},
-    {"name":"Artichoke and Sun-Dried Tomato","price":"€12.00","image":"http://dummyimage.com/300x300.png/dddddd/000000"},
-    {"name":"Artichoke and Sun-Dried Tomato","price":"€11.99","image":"http://dummyimage.com/300x300.png/cc0000/ffffff"},
-    {"name":"Meat Lovers","price":"€13.99","image":"http://dummyimage.com/300x300.png/5fa2dd/ffffff"},
-    {"name":"Hawaiian","price":"€9.00","image":"http://dummyimage.com/300x300.png/5fa2dd/ffffff"},
-    {"name":"Mushroom and Olive","price":"€7.99","image":"http://dummyimage.com/300x300.png/5fa2dd/ffffff"},
-    {"name":"Pesto and Tomato","price":"€8.49","image":"http://dummyimage.com/300x300.png/5fa2dd/ffffff"},
-    {"name":"Pesto and Tomato","price":"€8.00","image":"http://dummyimage.com/300x300.png/ff4444/ffffff"},
-    {"name":"Pepperoni","price":"€7.99","image":"http://dummyimage.com/300x300.png/5fa2dd/ffffff"},
-    {"name":"Artichoke and Sun-Dried Tomato","price":"€10.99","image":"http://dummyimage.com/300x300.png/cc0000/ffffff"},
-    {"name":"Spinach and Feta","price":"€9.50","image":"http://dummyimage.com/300x300.png/5fa2dd/ffffff"}
+    {"name":"Pepperoni","price":"€8.99","image":"assets/altonno.jpg"},
+    {"name":"Spinach and Feta","price":"€10.49","image":"assets/altonno.jpg"},
+    {"name":"Pepperoni","price":"€7.50","image":"assets/altonno.jpg"},
+    {"name":"Margherita","price":"€6.00","image":"assets/altonno.jpg"},
+    {"name":"Artichoke and Sun-Dried Tomato","price":"€12.00","image":"assets/altonno.jpg"},
+    {"name":"Artichoke and Sun-Dried Tomato","price":"€11.99","image":"assets/altonno.jpg"},
+    {"name":"Meat Lovers","price":"€13.99","image":"assets/altonno.jpg"},
+    {"name":"Hawaiian","price":"€9.00","image":"assets/altonno.jpg"},
+    {"name":"Mushroom and Olive","price":"€7.99","image":"assets/altonno.jpg"},
+    {"name":"Pesto and Tomato","price":"€8.49","image":"assets/altonno.jpg"},
+    {"name":"Pesto and Tomato","price":"€8.00","image":"assets/altonno.jpg"},
+    {"name":"Pepperoni","price":"€7.99","image":"assets/altonno.jpg"},
+    {"name":"Artichoke and Sun-Dried Tomato","price":"€10.99","image":"assets/altonno.jpg"},
+    {"name":"Spinach and Feta","price":"€9.50","image":"assets/altonno.jpg"}
   ]'''));
 
   List<FoodItem> _convertJsonToFoodItems(BuildContext context) {
