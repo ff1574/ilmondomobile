@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/cart.dart';
-import '../widgets/map.dart'; // Import the map widget
+import '../widgets/google_map_widget.dart'; // Ensure this import is present
 
 class CheckoutScreen extends StatelessWidget {
   final Cart cart;
@@ -17,7 +17,12 @@ class CheckoutScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            const Expanded(
+              flex: 2, // Give the map more space
+              child: GoogleMapWidget(), // Integrate the Google map here
+            ),
             Expanded(
+              flex: 3,
               child: ListView.builder(
                 itemCount: cart.items.length,
                 itemBuilder: (context, index) => ListTile(
@@ -45,19 +50,18 @@ class CheckoutScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            const Text("Delivery Location",
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8.0),
-            Map(), // Display map
-            const SizedBox(height: 16.0),
             const Text("Payment Details",
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8.0),
-            _PaymentForm(), // Include payment form
+            _PaymentForm(),
             const SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () =>
-                  cart.clear(), // Clear cart and handle completion logic
+              onPressed: () {
+                // Clear cart and handle completion logic
+                cart.clear();
+                Navigator.pop(
+                    context); // Optionally return to the home screen or a confirmation screen
+              },
               child: const Text("Complete Purchase"),
             ),
           ],
